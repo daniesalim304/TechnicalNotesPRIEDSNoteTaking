@@ -1,24 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-    <TextView
-        android:id="@+id/titleNotes"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="2dp"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="10dp">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/notes_title"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:textColor="@color/black" />
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10dp">
+            <TextView
+                android:id="@+id/titleNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/notes_title"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/contentNotes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/notes_description"
-        android:textSize="14sp"
-        android:textColor="@color/black" />
-</LinearLayout>
+            <TextView
+                android:id="@+id/contentNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/notes_description"
+                android:textSize="14sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <ImageView
+            android:contentDescription="Chevron"
+            android:id="@+id/chevronIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/chevron_right" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

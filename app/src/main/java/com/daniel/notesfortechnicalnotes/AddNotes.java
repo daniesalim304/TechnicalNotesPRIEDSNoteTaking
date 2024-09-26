@@ -2,10 +2,8 @@ package com.daniel.notesfortechnicalnotes;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.EditText;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -41,21 +39,19 @@ public class AddNotes extends AppCompatActivity {
         String description = etDescription.getText().toString().trim();
 
         if (!title.isEmpty() && !description.isEmpty()) {
+            Intent resultIntent = new Intent();
+
             if (noteId == -1) {
-                // Adding a new note
                 notesConnector.insert(title, description);
             } else {
-                // Editing an existing note
                 notesConnector.update(noteId, title, description);
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
             }
 
-            // Set result as OK to notify MainActivity that the note was saved
-            setResult(RESULT_OK);
-
-            // Finish the activity
+            setResult(RESULT_OK, resultIntent);
             finish();
         } else {
-            // Show error if title or description is empty
             if (title.isEmpty()) {
                 etTitle.setError("Title is required");
             }
@@ -64,5 +60,7 @@ public class AddNotes extends AppCompatActivity {
             }
         }
     }
+
+
 
 }
