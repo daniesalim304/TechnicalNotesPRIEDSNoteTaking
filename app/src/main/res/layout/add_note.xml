@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/notes_title"
+        android:textSize="18sp"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/notes_description"
+        android:layout_below="@id/etTitle"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:lines="5"
+        android:gravity="top|start"
+        android:minLines="4"
+        android:scrollbars="vertical"
+        android:inputType="textMultiLine"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_save_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/save"
+        android:contentDescription="@string/save_notes"
+        android:backgroundTint="@color/blue"
+        android:tint="@color/white"/>
+</RelativeLayout>
