@@ -2,6 +2,8 @@ package com.daniel.notesfortechnicalnotes;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -33,10 +35,21 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView rvNotes = findViewById(R.id.rvNotes);
         rvNotes.setLayoutManager(new LinearLayoutManager(this));
 
+        TextView tvNoNotes = findViewById(R.id.tvNotesNotifications);
+
         notesAdapter = new NotesAdapter(new ArrayList<>(), this, notesConnector);
         rvNotes.setAdapter(notesAdapter);
 
-        notesConnector.getAllNotes().observe(this, notes -> notesAdapter.setNotes(notes));
+        notesConnector.getAllNotes().observe(this, notes -> {
+            notesAdapter.setNotes(notes);
+            if (notes != null && !notes.isEmpty()) {
+                rvNotes.setVisibility(View.VISIBLE);
+                tvNoNotes.setVisibility(View.GONE);
+            } else {
+                rvNotes.setVisibility(View.GONE);
+                tvNoNotes.setVisibility(View.VISIBLE);
+            }
+        });
 
         addNoteLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -47,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
                         notesConnector.getAllNotes().observe(this, notes -> {
                             notesAdapter.setNotes(notes);
                             notesAdapter.notifyDataSetChanged();
+                            if (notes != null && !notes.isEmpty()) {
+                                rvNotes.setVisibility(View.VISIBLE);
+                                tvNoNotes.setVisibility(View.GONE);
+                            } else {
+                                rvNotes.setVisibility(View.GONE);
+                                tvNoNotes.setVisibility(View.VISIBLE);
+                            }
                         });
                     }
                 }

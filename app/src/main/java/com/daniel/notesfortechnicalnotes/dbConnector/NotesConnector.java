@@ -10,12 +10,12 @@ import com.daniel.notesfortechnicalnotes.model.NotesModel;
 import java.util.List;
 
 public class NotesConnector extends AndroidViewModel {
-    private final notesDB notesDatabase;
+    private final notesDBConnector notesDatabase;
     private final LiveData<List<NotesModel>> allNotes;
 
     public NotesConnector(Application application) {
         super(application);
-        notesDatabase = new notesDB(application);
+        notesDatabase = new notesDBConnector(application);
         allNotes = notesDatabase.getAllNotes();
     }
 

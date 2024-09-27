@@ -2,6 +2,7 @@ package com.daniel.notesfortechnicalnotes;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +31,7 @@ public class AddNotes extends AppCompatActivity {
             etDescription.setText(getIntent().getStringExtra("noteDescription"));
         }
 
-        FloatingActionButton fabSave = findViewById(R.id.fab_save_note);
+        Button fabSave = findViewById(R.id.btn_save_note);
         fabSave.setOnClickListener(v -> saveNote());
     }
 

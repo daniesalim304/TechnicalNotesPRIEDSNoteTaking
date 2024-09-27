@@ -60,29 +60,24 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         String[] options = {"Edit", "Delete"};
         builder.setItems(options, (dialog, which) -> {
             if (which == 0) {
-                // Edit option selected
                 Intent intent = new Intent(context, AddNotes.class);
                 intent.putExtra("noteId", note.getId());
                 intent.putExtra("noteTitle", note.getTitle());
                 intent.putExtra("noteDescription", note.getDescription());
                 context.startActivity(intent);
             } else if (which == 1) {
-                // Show confirmation dialog before deleting
                 DialogInterface.OnClickListener yesNoDialog = new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case DialogInterface.BUTTON_POSITIVE:
-                                // Delete the note using notesConnector
                                 notesConnector.delete(note.getId());
-                                // Optionally notify the adapter that the item is removed
                                 notesList.remove(position);
                                 notifyItemRemoved(position);
                                 notifyItemRangeChanged(position, notesList.size());
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
-                                // No action on cancel
                                 break;
                         }
                     }
